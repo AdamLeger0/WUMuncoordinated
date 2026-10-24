@@ -18,17 +18,19 @@ import './App.css';
 import Onboard from './pages/Onboard';
 import Homepage from './pages/Homepage';
 import Committee from './pages/Committee';
+import CommitteesDirectory from './pages/CommitteesDirectory';
+import ConferenceAdmin from './pages/ConferenceAdmin';
 import { NotFound } from './components/NotFound';
+import { installDatabaseSync } from './modules/db-sync';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA9EuEf7m3YOTBhBNhoe7DcOIZJP2toL6w',
-  authDomain: 'muncoordinated.firebaseapp.com',
-  databaseURL: 'https://muncoordinated.firebaseio.com',
-  projectId: 'muncoordinated',
-  storageBucket: 'muncoordinated.appspot.com',
-  messagingSenderId: '308589918735',
-  appId: "1:308589918735:web:f3567ce28d637eba40017a",
-  measurementId: "G-DPWPPBRD4M"
+  apiKey: "AIzaSyDZ3DShdIqbDfJGM-TbGMjwFIdOmUwO3a4",
+  authDomain: "wumun-hub.firebaseapp.com",
+  databaseURL: "https://wumun-hub-default-rtdb.firebaseio.com",
+  projectId: "wumun-hub",
+  storageBucket: "wumun-hub.firebasestorage.app",
+  messagingSenderId: "288208820242",
+  appId: "1:288208820242:web:c149cdacd583ef319620cb"
 };
 
 const useFirebaseEmulators = import.meta.env.VITE_USE_FIREBASE_EMULATORS === 'true';
@@ -47,9 +49,7 @@ if (useFirebaseEmulators && !emulatorState.__FIREBASE_EMULATORS_CONNECTED__) {
   emulatorState.__FIREBASE_EMULATORS_CONNECTED__ = true;
 }
 
-if (!useFirebaseEmulators) {
-  firebase.analytics();
-}
+installDatabaseSync();
 
 class App extends React.Component {
   render() {
@@ -57,7 +57,8 @@ class App extends React.Component {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/onboard" component={Onboard} />
-        <Route exact path="/committees" component={Onboard} />
+        <Route exact path="/committees" component={CommitteesDirectory} />
+        <Route exact path="/admin" component={ConferenceAdmin} />
         <Route path="/committees/:committeeID" component={Committee} />
         <Route path="*">
           <NotFound item="page" id="unknown" />

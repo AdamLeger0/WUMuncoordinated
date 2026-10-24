@@ -1,13 +1,14 @@
 import * as React from 'react';
 import * as Utils from '../utils';
-import { canVote, MemberData, MemberID, nonNGO } from './member';
+import { canVote, isDaisMember, MemberData, MemberID, nonNGO } from './member';
 import { Table } from 'semantic-ui-react';
 import {CommitteeData} from "../models/committee";
 
 export function makeCommitteeStats(data?: CommitteeData) {
   const defaultMap = {} as Record<MemberID, MemberData>;
   const membersMap: Record<MemberID, MemberData> = data ? (data.members || defaultMap) : defaultMap;
-  const members: MemberData[] = Utils.objectToList(membersMap);
+  // Exclude Dais members completely from delegate counts, quorum, and voting thresholds
+  const members: MemberData[] = Utils.objectToList(membersMap).filter(x => !isDaisMember(x));
   const present = members.filter(x => x.present);
 
   const delegatesNo: number     = members.length;

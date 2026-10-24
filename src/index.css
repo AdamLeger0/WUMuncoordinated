@@ -1,44 +1,528 @@
 :root {
-  /* Background & Text */
-  --bg-primary: #fdfde6;
-  --text-dark: #16161c;
-  --text-light: #efeff0;
+  /* WUMUN Light Mode Background & Base (No Pure White) */
+  --wumun-bg: #fdfde6;
+  --wumun-text-dark: #16161c;
+  --wumun-text-light: #efeff0;
 
-  /* Main WUMUN Colors */
-  --un-blue: #5b92e5;
-  --un-red: #ba5959;
-  --un-yellow: #eba113;
-  --un-green: #688667;
+  /* WUMUN Primary Palette */
+  --wumun-blue: #5b92e5;
+  --wumun-red: #ba5959;
+  --wumun-yellow: #eba113;
+  --wumun-green: #688667;
 
-  /* Secondary Colors */
-  --sec-brown: #38280d;
-  --sec-plum: #4b1931;
-  --sec-navy: #011f3d;
-  --sec-teal: #006f79;
+  /* WUMUN Secondary Palette */
+  --wumun-brown: #38280d;
+  --wumun-plum: #4b1931;
+  --wumun-navy: #011f3d;
+  --wumun-teal: #006f79;
+
+  /* Legacy Variable Aliases */
+  --bg-primary: var(--wumun-bg);
+  --text-dark: var(--wumun-text-dark);
+  --text-light: var(--wumun-text-light);
+  --un-blue: var(--wumun-blue);
+  --un-red: var(--wumun-red);
+  --un-yellow: var(--wumun-yellow);
+  --un-green: var(--wumun-green);
+  --sec-brown: var(--wumun-brown);
+  --sec-plum: var(--wumun-plum);
+  --sec-navy: var(--wumun-navy);
+  --sec-teal: var(--wumun-teal);
 
   /* Resolution Status Colors */
-  --status-draft: var(--un-blue);
-  --status-amended: var(--un-yellow);
-  --status-passed: var(--un-green);
-  --status-failed: var(--un-red);
+  --status-draft: var(--wumun-blue);
+  --status-amended: var(--wumun-yellow);
+  --status-passed: var(--wumun-green);
+  --status-failed: var(--wumun-red);
 
-  background-color: var(--bg-primary);
-  color: var(--text-dark);
+  background-color: var(--wumun-bg);
+  color: var(--wumun-text-dark);
 }
 
-body {
+html,
+body,
+#root,
+.pushable > .pusher {
   font-family: 'Inter', system-ui, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-dark);
+  background-color: var(--wumun-bg) !important;
+  color: var(--wumun-text-dark) !important;
+}
+
+/* Global Semantic UI Overrides - Cream Base (#fdfde6) & Dimmer White (#efeff0) Outlines/Text */
+.ui.header {
+  color: var(--wumun-text-dark);
+}
+
+.ui.header .sub.header {
+  color: var(--wumun-brown);
+}
+
+/* Inverted / Dark Navy Segments & Menus -> Always Light Text (#efeff0) */
+.ui.inverted.segment,
+.ui.inverted.menu {
+  background-color: var(--wumun-navy) !important;
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.inverted.header,
+.ui.inverted.segment .ui.header,
+.ui.inverted.segment p,
+.ui.inverted.segment span,
+.ui.inverted.segment .ui.list .item,
+.ui.inverted.segment .ui.list .item .header,
+.ui.inverted.segment .ui.list .item .content,
+.ui.inverted.segment .ui.list .item .description,
+.ui.inverted.segment .ui.link.list .item,
+.ui.inverted.segment .ui.link.list a.item,
+.ui.inverted.segment a:not(.ui.button):not(.ui.label),
+.ui.inverted.segment .ui.dropdown,
+.ui.inverted.segment .ui.dropdown > .text,
+.ui.inverted.segment .ui.dropdown > .default.text,
+.ui.inverted.segment .ui.statistic > .value,
+.ui.inverted.segment .ui.statistic > .label,
+.ui.inverted.statistic > .value,
+.ui.inverted.statistic > .label {
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.inverted.segment a:not(.ui.button):not(.ui.label) {
+  text-decoration: underline;
+}
+
+.ui.inverted.header .sub.header,
+.ui.inverted.segment .ui.header .sub.header {
+  color: var(--wumun-text-light) !important;
+  opacity: 0.9;
+}
+
+.ui.attached.header,
+.ui.top.attached.header {
+  background-color: var(--wumun-bg) !important;
+  color: var(--wumun-text-dark) !important;
+  border-color: rgba(22, 22, 28, 0.22) !important;
+}
+
+.ui.segment:not(.inverted),
+.ui.segments .segment:not(.inverted),
+.ui.card,
+.ui.cards > .card,
+.ui.modal,
+.ui.modal > .content,
+.ui.modal > .actions,
+.ui.popup,
+.ui.menu:not(.inverted),
+.ui.vertical.menu:not(.inverted),
+.ui.dropdown .menu,
+.ui.selection.dropdown,
+.ui.table:not(.inverted),
+.ui.table:not(.inverted) thead th,
+.ui.table:not(.inverted) tbody tr,
+.ui.table:not(.inverted) tfoot th,
+.ui.tabular.menu .active.item,
+.ui.attached.tabular.menu {
+  background-color: var(--wumun-bg) !important;
+  color: var(--wumun-text-dark) !important;
+  border-color: rgba(22, 22, 28, 0.18) !important;
+}
+
+/* Modal header defaults to Dark Navy with Light Text */
+.ui.modal > .header {
+  background-color: var(--wumun-navy) !important;
+  color: var(--wumun-text-light) !important;
+  border-color: rgba(22, 22, 28, 0.18) !important;
+}
+
+.ui.modal > .header i.icon {
+  color: var(--wumun-text-light) !important;
+}
+
+/* Default uncolored labels use Cream Base without blocking inline/palette styles */
+.ui.label:not(.blue):not(.green):not(.red):not(.yellow):not(.purple):not(.teal):not(.brown):not(.black) {
+  background-color: rgba(22, 22, 28, 0.09);
+  color: var(--wumun-text-dark);
+  border: 1px solid rgba(22, 22, 28, 0.2);
+}
+
+/* Colored Labels: Dark/Saturated Boxes use Light Text (#efeff0); Bright Yellow uses Dark Text (#16161c) */
+.ui.blue.label,
+.ui.primary.label {
+  background-color: var(--wumun-blue) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.red.label,
+.ui.negative.label {
+  background-color: var(--wumun-red) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.yellow.label,
+.ui.warning.label {
+  background-color: var(--wumun-yellow) !important;
+  color: var(--wumun-text-dark) !important;
+  font-weight: 700 !important;
+}
+
+.ui.green.label,
+.ui.positive.label {
+  background-color: var(--wumun-green) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.purple.label {
+  background-color: var(--wumun-plum) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.teal.label {
+  background-color: var(--wumun-teal) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.brown.label {
+  background-color: var(--wumun-brown) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.black.label {
+  background-color: var(--wumun-navy) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+/* Semantic UI Messages - High-Contrast Brand Palette */
+.ui.message {
+  background-color: var(--wumun-bg);
+  color: var(--wumun-text-dark);
+  border: 1.5px solid var(--wumun-navy);
+  box-shadow: none;
+}
+
+.ui.message .header {
+  color: inherit !important;
+  font-weight: 700 !important;
+}
+
+.ui.info.message {
+  background-color: var(--wumun-blue) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-navy) !important;
+}
+
+.ui.warning.message {
+  background-color: var(--wumun-yellow) !important;
+  color: var(--wumun-text-dark) !important;
+  border: 2px solid var(--wumun-brown) !important;
+}
+
+.ui.positive.message,
+.ui.success.message {
+  background-color: var(--wumun-green) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-navy) !important;
+}
+
+.ui.negative.message,
+.ui.error.message {
+  background-color: var(--wumun-red) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-plum) !important;
+}
+
+/* Stand-Out Global Notification Banners */
+.wumun-notification-banner {
+  border-radius: 8px !important;
+  padding: 1em 1.25em !important;
+  margin-bottom: 0.65em !important;
+  box-shadow: 0 3px 10px rgba(1, 31, 61, 0.18) !important;
+  position: relative;
+}
+
+.wumun-notification-banner.wumun-severity-info {
+  background-color: var(--wumun-blue) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-navy) !important;
+}
+
+.wumun-notification-banner.wumun-severity-urgent {
+  background-color: var(--wumun-red) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-plum) !important;
+}
+
+.wumun-notification-banner.wumun-severity-warning {
+  background-color: var(--wumun-yellow) !important;
+  color: var(--wumun-text-dark) !important;
+  border: 2px solid var(--wumun-brown) !important;
+}
+
+.wumun-notification-banner.wumun-severity-success {
+  background-color: var(--wumun-green) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-navy) !important;
+}
+
+.wumun-notification-banner.wumun-severity-navy {
+  background-color: var(--wumun-navy) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-blue) !important;
+}
+
+.wumun-notification-banner.wumun-severity-plum {
+  background-color: var(--wumun-plum) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-yellow) !important;
+}
+
+.wumun-notification-banner.wumun-severity-teal {
+  background-color: var(--wumun-teal) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-navy) !important;
+}
+
+.wumun-notification-banner.wumun-severity-brown {
+  background-color: var(--wumun-brown) !important;
+  color: var(--wumun-text-light) !important;
+  border: 2px solid var(--wumun-yellow) !important;
+}
+
+/* Inputs & Dropdowns */
+.ui.input > input,
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="time"],
+.ui.form input[type="text"],
+.ui.form input[type="file"],
+.ui.form input[type="url"],
+.ui.form textarea,
+.ui.selection.dropdown:not(.button) {
+  background-color: var(--wumun-bg) !important;
+  color: var(--wumun-text-dark) !important;
+  border: 1px solid rgba(22, 22, 28, 0.32) !important;
+}
+
+.ui.form input:focus,
+.ui.form textarea:focus,
+.ui.input > input:focus,
+.ui.selection.active.dropdown {
+  border-color: var(--wumun-blue) !important;
+  background-color: var(--wumun-bg) !important;
+}
+
+/* Scoped TimeSetter (duration input + sec/min dropdown + Set button) double-outline fix */
+.wumun-time-setter.ui.action.input > input,
+.wumun-time-setter .ui.action.input > input {
+  border: 1px solid rgba(22, 22, 28, 0.32) !important;
+  box-shadow: none !important;
+}
+
+.wumun-time-setter.ui.action.input > .dropdown,
+.wumun-time-setter .ui.action.input > .dropdown,
+.wumun-time-setter.ui.action.input > .button,
+.wumun-time-setter .ui.action.input > .button,
+.ui.button.dropdown {
+  background-color: var(--wumun-bg) !important;
+  color: var(--wumun-text-dark) !important;
+  border: 1px solid rgba(22, 22, 28, 0.32) !important;
+  box-shadow: none !important;
+}
+
+.wumun-time-setter.ui.action.input > input + .dropdown,
+.wumun-time-setter .ui.action.input > input + .dropdown,
+.wumun-time-setter.ui.action.input > input + .button,
+.wumun-time-setter .ui.action.input > input + .button,
+.wumun-time-setter.ui.action.input > .dropdown + .button,
+.wumun-time-setter .ui.action.input > .dropdown + .button {
+  border-left: none !important;
+}
+
+/* Top Menu & Navbar Alignment */
+.ui.menu .container {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.ui.menu .item,
+.ui.secondary.menu .item,
+.ui.secondary.pointing.menu .item {
+  align-self: center !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.ui.menu .item > i.icon {
+  margin: 0 0.45em 0 0 !important;
+}
+
+.ui.inverted.menu .item,
+.ui.inverted.menu .item > a:not(.ui) {
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.secondary.inverted.pointing.menu {
+  border-color: rgba(239, 239, 240, 0.25) !important;
+}
+
+.ui.secondary.inverted.pointing.menu .active.item {
+  border-color: var(--wumun-text-light) !important;
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.inverted.button {
+  box-shadow: 0 0 0 2px var(--wumun-text-light) inset !important;
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.inverted.button:hover {
+  background-color: var(--wumun-text-light) !important;
+  color: var(--wumun-navy) !important;
+}
+
+/* Default uncolored buttons use Cream base without !important so inline styles work */
+.ui.button:not(.primary):not(.positive):not(.negative):not(.blue):not(.green):not(.red):not(.yellow):not(.purple):not(.teal):not(.brown):not(.black):not(.inverted):not(.dropdown) {
+  background-color: var(--wumun-bg);
+  color: var(--wumun-text-dark);
+  box-shadow: 0 0 0 1px rgba(22, 22, 28, 0.3) inset;
+}
+
+.ui.buttons .or::before {
+  background-color: var(--wumun-bg) !important;
+  color: var(--wumun-text-dark) !important;
+  box-shadow: 0 0 0 1px rgba(22, 22, 28, 0.22) inset !important;
+}
+
+/* Colored Action Buttons: Dark/Saturated Boxes use Light Text (#efeff0); Bright Yellow uses Dark Text (#16161c) */
+.ui.primary.button,
+.ui.primary.buttons .button,
+.ui.blue.button,
+.ui.blue.buttons .button {
+  background-color: var(--wumun-blue) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.primary.button:hover,
+.ui.blue.button:hover {
+  background-color: #487fd3 !important;
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.positive.button,
+.ui.positive.buttons .button,
+.ui.green.button,
+.ui.green.buttons .button {
+  background-color: var(--wumun-green) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.positive.button:hover,
+.ui.green.button:hover {
+  background-color: #577356 !important;
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.negative.button,
+.ui.negative.buttons .button,
+.ui.red.button,
+.ui.red.buttons .button {
+  background-color: var(--wumun-red) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.negative.button:hover,
+.ui.red.button:hover {
+  background-color: #a84949 !important;
+  color: var(--wumun-text-light) !important;
+}
+
+.ui.yellow.button,
+.ui.yellow.buttons .button {
+  background-color: var(--wumun-yellow) !important;
+  color: var(--wumun-text-dark) !important;
+  font-weight: 700 !important;
+}
+
+.ui.purple.button,
+.ui.purple.buttons .button {
+  background-color: var(--wumun-plum) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.teal.button,
+.ui.teal.buttons .button {
+  background-color: var(--wumun-teal) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.brown.button,
+.ui.brown.buttons .button {
+  background-color: var(--wumun-brown) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.black.button,
+.ui.black.buttons .button {
+  background-color: var(--wumun-navy) !important;
+  color: var(--wumun-text-light) !important;
+  font-weight: 700 !important;
+}
+
+.ui.basic.red.button,
+.ui.basic.negative.button {
+  background-color: transparent !important;
+  box-shadow: 0 0 0 1.5px var(--wumun-red) inset !important;
+  color: var(--wumun-text-dark) !important;
+}
+
+.ui.basic.primary.button,
+.ui.basic.blue.button {
+  background-color: transparent !important;
+  box-shadow: 0 0 0 1.5px var(--wumun-blue) inset !important;
+  color: var(--wumun-text-dark) !important;
+}
+
+.ui.basic.positive.button,
+.ui.basic.green.button {
+  background-color: transparent !important;
+  box-shadow: 0 0 0 1.5px var(--wumun-green) inset !important;
+  color: var(--wumun-text-dark) !important;
+}
+
+.ui.basic.purple.button {
+  background-color: transparent !important;
+  box-shadow: 0 0 0 1.5px var(--wumun-plum) inset !important;
+  color: var(--wumun-plum) !important;
+}
+
+.ui.form.loading::before,
+.ui.segment.loading::before {
+  background: rgba(253, 253, 230, 0.82) !important;
 }
 
 .status-badge {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.875rem;
-  color: var(--text-light);
+  color: var(--wumun-text-light);
 }
-.badge-draft { background-color: var(--status-draft); }
-.badge-amended { background-color: var(--status-amended); color: var(--text-dark); }
-.badge-passed { background-color: var(--status-passed); }
+.badge-draft { background-color: var(--status-draft); color: var(--wumun-text-light); }
+.badge-amended { background-color: var(--status-amended); color: var(--wumun-text-dark); }
+.badge-passed { background-color: var(--status-passed); color: var(--wumun-text-light); }

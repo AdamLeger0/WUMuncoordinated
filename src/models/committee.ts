@@ -3,6 +3,7 @@ import {
   MemberData,
   MemberID,
   MemberOption,
+  membersToDelegationOptions,
   membersToOptions,
   membersToPresentOptions,
   Rank
@@ -27,6 +28,14 @@ export function recoverMemberOptions(committee?: CommitteeData): MemberOption[] 
   }
 }
 
+export function recoverDelegationOptions(committee?: CommitteeData): MemberOption[] {
+  if (committee) {
+    return membersToDelegationOptions(committee.members);
+  } else {
+    return [];
+  }
+}
+
 export function recoverPresentMemberOptions(committee?: CommitteeData): MemberOption[] {
   if (committee) {
     return membersToPresentOptions(committee.members);
@@ -41,23 +50,23 @@ export function recoverMembers(committee?: CommitteeData): Record<MemberID, Memb
 
 export function recoverSettings(committee?: CommitteeData): Required<SettingsData> {
   let timersInSeparateColumns: boolean =
-    committee?.settings.timersInSeparateColumns
+    committee?.settings?.timersInSeparateColumns
     ?? DEFAULT_SETTINGS.timersInSeparateColumns;
 
   const moveQueueUp: boolean =
-    committee?.settings.moveQueueUp
+    committee?.settings?.moveQueueUp
     ?? DEFAULT_SETTINGS.moveQueueUp;
 
   const autoNextSpeaker: boolean =
-    committee?.settings.autoNextSpeaker
+    committee?.settings?.autoNextSpeaker
     ?? DEFAULT_SETTINGS.autoNextSpeaker;
 
   const motionVotes: boolean =
-    committee?.settings.motionVotes
+    committee?.settings?.motionVotes
     ?? DEFAULT_SETTINGS.motionVotes;
 
   const motionsArePublic: boolean =
-    committee?.settings.motionsArePublic
+    committee?.settings?.motionsArePublic
     ?? DEFAULT_SETTINGS.motionsArePublic;
 
   return {
@@ -97,6 +106,54 @@ export enum Template {
   // WHOHealthBoard = 'WHO Health Board',
 }
 
+export interface CommitteeModerator {
+  uid?: string;
+  email: string;
+  addedAt: number;
+  addedBy?: string;
+}
+
+export interface CommitteeFeatureLocks {
+  physicalMode?: boolean;
+  disableObservers?: boolean;
+  lockCaucuses?: boolean;
+  lockUnmod?: boolean;
+  lockResolutions?: boolean;
+  lockMotions?: boolean;
+  lockStrawpolls?: boolean;
+  lockNotes?: boolean;
+  lockPosts?: boolean;
+  lockStats?: boolean;
+}
+
+export const DEFAULT_FEATURE_LOCKS: Required<CommitteeFeatureLocks> = {
+  physicalMode: false,
+  disableObservers: false,
+  lockCaucuses: false,
+  lockUnmod: false,
+  lockResolutions: false,
+  lockMotions: false,
+  lockStrawpolls: false,
+  lockNotes: false,
+  lockPosts: false,
+  lockStats: false,
+};
+
+export function recoverFeatureLocks(committee?: CommitteeData): Required<CommitteeFeatureLocks> {
+  return {
+    physicalMode: committee?.featureLocks?.physicalMode ?? false,
+    disableObservers: committee?.featureLocks?.disableObservers ?? false,
+    lockCaucuses: committee?.featureLocks?.lockCaucuses ?? false,
+    lockUnmod: committee?.featureLocks?.lockUnmod ?? false,
+    lockResolutions: committee?.featureLocks?.lockResolutions ?? false,
+    lockMotions: committee?.featureLocks?.lockMotions ?? false,
+    lockStrawpolls: committee?.featureLocks?.lockStrawpolls ?? false,
+    lockNotes: committee?.featureLocks?.lockNotes ?? false,
+    lockPosts: committee?.featureLocks?.lockPosts ?? false,
+    lockStats: committee?.featureLocks?.lockStats ?? false,
+  };
+}
+
 export interface CommitteeData {
   name: string;
   chair: string;
@@ -104,6 +161,11 @@ export interface CommitteeData {
   conference: string;
   template?: Template;
   creatorUid: firebase.UserInfo['uid'];
+  creatorEmail?: string;
+  archived?: boolean;
+  locked?: boolean;
+  moderators?: Record<string, CommitteeModerator>;
+  featureLocks?: CommitteeFeatureLocks;
   members?: Record<MemberID, MemberData>;
   caucuses?: Record<CaucusID, CaucusData>;
   resolutions?: Record<ResolutionID, ResolutionData>;
@@ -122,7 +184,7 @@ export const DEFAULT_COMMITTEE: CommitteeData = {
   name: '',
   chair: '',
   topic: '',
-  conference: '',
+  conference: 'Winthrop University Model UN',
   creatorUid: '',
   members: {} as Record<MemberID, MemberData>,
   caucuses: {

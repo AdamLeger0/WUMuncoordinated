@@ -1,0 +1,448 @@
+{
+  "users": {
+    "i0vDGu0n8RZbKJ7Yoha3eHI7zvz1": {
+      "uid": "i0vDGu0n8RZbKJ7Yoha3eHI7zvz1",
+      "email": "legera2@winthrop.edu",
+      "lastSeen": 1792877353145
+    }
+  },
+  "conference": {
+    "notifications": {},
+    "settings": {
+      "conferenceName": "Winthrop University Model UN",
+      "subtitle": "WUMUN Conference Session",
+      "dates": "2026 Conference",
+      "allCommitteesLocked": false
+    },
+    "admins": {},
+    "approvedUsers": {}
+  },
+  "committees": {
+    "lot-iev-vwn": {
+      "name": "African Union",
+      "chair": "",
+      "topic": "",
+      "conference": "Winthrop University Model UN",
+      "creatorUid": "i0vDGu0n8RZbKJ7Yoha3eHI7zvz1",
+      "members": {
+        "-mvmt9nld-zxn-vid": {
+          "name": "Algeria",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nld-fxx-vxg": {
+          "name": "Angola",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nle-xxj-kpj": {
+          "name": "Benin",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nle-qvy-lyc": {
+          "name": "Botswana",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nle-rhv-acs": {
+          "name": "Burkina Faso",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlf-qqx-hgk": {
+          "name": "Burundi",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlf-urb-ohj": {
+          "name": "Cameroon",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlf-ibh-uuj": {
+          "name": "Cabo Verde",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlg-glp-tqd": {
+          "name": "Central African Republic",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlg-yaj-imo": {
+          "name": "Chad",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlg-sww-tzx": {
+          "name": "Comoros",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlg-nbi-pdm": {
+          "name": "Democratic Republic of the Congo",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlh-buk-hhq": {
+          "name": "Republic of the Congo",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlh-bvs-dzn": {
+          "name": "Côte d'Ivoire",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlh-rpi-djb": {
+          "name": "Djibouti",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlh-wck-epe": {
+          "name": "Egypt",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nli-lpe-unr": {
+          "name": "Equatorial Guinea",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nli-bxj-usz": {
+          "name": "Eritrea",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nli-ljz-zle": {
+          "name": "Eswatini",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlj-qut-kfq": {
+          "name": "Ethiopia",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlj-efy-mzj": {
+          "name": "Gabon",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlj-ghx-phb": {
+          "name": "Gambia",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlj-wkk-gpj": {
+          "name": "Ghana",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlj-sla-fxk": {
+          "name": "Guinea",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlk-bor-oli": {
+          "name": "Guinea-Bissau",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlk-kyd-bhm": {
+          "name": "Kenya",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlk-ndz-ueh": {
+          "name": "Lesotho",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlk-xzr-ldg": {
+          "name": "Liberia",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlk-qya-vrh": {
+          "name": "Libya",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-zqc-oth": {
+          "name": "Madagascar",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-jnd-fix": {
+          "name": "Malawi",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-ngf-paz": {
+          "name": "Mali",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-gcw-kqf": {
+          "name": "Mauritania",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-uzj-hmp": {
+          "name": "Mauritius",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-vdj-fty": {
+          "name": "Morocco",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-ojx-rii": {
+          "name": "Mozambique",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nll-efs-hvh": {
+          "name": "Namibia",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nln-xnn-gdr": {
+          "name": "Niger",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nln-ksn-vot": {
+          "name": "Nigeria",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nln-yic-uuo": {
+          "name": "Rwanda",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nln-ebr-cvb": {
+          "name": "Sao Tome and Principe",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlo-vvg-dgb": {
+          "name": "Senegal",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlo-dty-keb": {
+          "name": "Seychelles",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlo-jqx-gbm": {
+          "name": "Sierra Leone",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlo-lpd-sne": {
+          "name": "Somalia",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlp-pkl-ycv": {
+          "name": "South Africa",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlp-foz-jfm": {
+          "name": "South Sudan",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlp-zsq-qiu": {
+          "name": "Sudan",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlp-bsh-oeq": {
+          "name": "United Republic of Tanzania",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlp-fmv-gzi": {
+          "name": "Togo",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlq-ufh-pin": {
+          "name": "Tunisia",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlq-lpv-qga": {
+          "name": "Uganda",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlq-van-jev": {
+          "name": "Western Sahara",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlr-kya-wyy": {
+          "name": "Zambia",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmt9nlr-gns-euj": {
+          "name": "Zimbabwe",
+          "rank": "Standard",
+          "present": true,
+          "voting": false
+        },
+        "-mvmwzidy-gru-zej": {
+          "name": "Dais",
+          "rank": "Dais",
+          "present": false,
+          "voting": false,
+          "password": ""
+        }
+      },
+      "caucuses": {
+        "gsl": {
+          "name": "General Speakers' List",
+          "topic": "",
+          "status": "Open",
+          "speakerTimer": {
+            "elapsed": 0,
+            "remaining": 60,
+            "ticking": false
+          },
+          "speakerDuration": 60,
+          "speakerUnit": "sec",
+          "caucusTimer": {
+            "elapsed": 0,
+            "remaining": 600,
+            "ticking": false
+          },
+          "queueIsPublic": false,
+          "queue": {
+            "-mvmx1cjy-sdi-fzy": {
+              "who": "Guinea-Bissau",
+              "stance": "Against",
+              "duration": 60
+            },
+            "-mvmx1cjz-hqm-xnv": {
+              "who": "Ghana",
+              "stance": "Neutral",
+              "duration": 60
+            },
+            "-mvmx1ck0-ouw-yll": {
+              "who": "Guinea",
+              "stance": "For",
+              "duration": 60
+            },
+            "-mvmx1ck0-gss-cip": {
+              "who": "Madagascar",
+              "stance": "For",
+              "duration": 60
+            }
+          },
+          "history": {},
+          "speaking": {
+            "who": "Ethiopia",
+            "stance": "For",
+            "duration": 60
+          }
+        }
+      },
+      "resolutions": {},
+      "files": {},
+      "strawpolls": {},
+      "motions": {},
+      "timer": {
+        "elapsed": 0,
+        "remaining": 600,
+        "ticking": false
+      },
+      "notes": "",
+      "settings": {
+        "moveQueueUp": false,
+        "timersInSeparateColumns": false,
+        "autoNextSpeaker": false,
+        "motionVotes": false,
+        "motionsArePublic": false
+      },
+      "creatorEmail": "legera2@winthrop.edu",
+      "template": "African Union",
+      "featureLocks": {
+        "physicalMode": true,
+        "disableObservers": false,
+        "lockCaucuses": false,
+        "lockUnmod": false,
+        "lockResolutions": false,
+        "lockMotions": false,
+        "lockStrawpolls": false,
+        "lockNotes": false,
+        "lockPosts": false,
+        "lockStats": false
+      }
+    }
+  },
+  "__deletedCommittees": []
+}

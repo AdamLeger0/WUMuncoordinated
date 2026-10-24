@@ -12,11 +12,13 @@ export enum Rank {
   Veto = 'Veto',
   Standard = 'Standard',
   NGO = 'NGO',
-  Observer = 'Observer'
+  Observer = 'Observer',
+  Dais = 'Dais'
 }
 
+export const isDaisMember = (x: MemberData) => x.rank === Rank.Dais;
 export const canVote = (x: MemberData) => (x.rank === Rank.Veto || x.rank === Rank.Standard);
-export const nonNGO = (x: MemberData) => (x.rank !== Rank.NGO);
+export const nonNGO = (x: MemberData) => (x.rank !== Rank.NGO && x.rank !== Rank.Dais);
 
 export type MemberID = string;
 
@@ -25,6 +27,7 @@ export interface MemberData {
   present: boolean;
   rank: Rank;
   voting: boolean;
+  password?: string;
 }
 
 export interface MemberOption {
@@ -98,9 +101,17 @@ export function membersToOptions(members: Record<MemberID, MemberData> | undefin
   return _.sortBy(options, (option: MemberOption) => option.text);
 }
 
+export function membersToDelegationOptions(members: Record<MemberID, MemberData> | undefined): MemberOption[] {
+  const options = objectToList(members || {})
+    .filter(x => x.rank !== Rank.Dais)
+    .map(x => nameToMemberOption(x.name));
+
+  return _.sortBy(options, (option: MemberOption) => option.text);
+}
+
 export function membersToPresentOptions(members: Record<MemberID, MemberData> | undefined): MemberOption[] {
   const options = objectToList(members || {})
-    .filter(x => x.present)
+    .filter(x => x.present && x.rank !== Rank.Dais)
     .map(x => nameToMemberOption(x.name));
 
   return _.sortBy(options, (option: MemberOption) => option.text);

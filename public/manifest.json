@@ -1,6 +1,6 @@
 {
-  "short_name": "Muncoordinated",
-  "name": "Muncoordinated",
+  "short_name": "WUMUN",
+  "name": "Winthrop University Model UN",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,5 +11,5 @@
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#5b92e5",
-  "background_color": "#ffffff"
+  "background_color": "#fdfde6"
 }

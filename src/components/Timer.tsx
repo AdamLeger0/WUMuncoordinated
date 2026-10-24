@@ -1,9 +1,9 @@
 import * as React from 'react';
 import firebase from 'firebase/compat/app';
-import {Button, DropdownProps, Form, Icon, Label, Progress, Segment} from 'semantic-ui-react';
-import {TimeSetter} from './TimeSetter';
+import { Button, DropdownProps, Form, Icon, Label, Progress, Segment } from 'semantic-ui-react';
+import { TimeSetter } from './TimeSetter';
 import _ from 'lodash';
-import {DEFAULT_TIMER, getSeconds, TimerData, Unit} from "../models/time";
+import { DEFAULT_TIMER, getSeconds, TimerData, Unit } from '../models/time';
 
 interface Props {
   name: string;
@@ -12,6 +12,7 @@ interface Props {
   toggleKeyCode?: number;
   defaultUnit: Unit;
   defaultDuration: number;
+  readOnly?: boolean;
 }
 
 interface State {
@@ -49,19 +50,19 @@ export function hhmmss(seconds: number): string {
 
 export function getTimeWithSkewCorrection(skew: number | undefined) {
   // eslint-disable-next-line new-parens
-  const millis =  skew ? skew + (new Date).getTime() : (new Date).getTime();
+  const millis = skew ? skew + new Date().getTime() : new Date().getTime();
 
   return Math.floor(millis / 1000);
 }
 
 export function toggleTicking({
-  timer, 
+  timer,
   timerFref,
   skew
 }: {
-  timer?: TimerData,
-  timerFref: firebase.database.Reference
-  skew?: number,
+  timer?: TimerData;
+  timerFref: firebase.database.Reference;
+  skew?: number;
 }) {
   if (timer) {
     const newTimer = {
@@ -95,7 +96,7 @@ export default class Timer extends React.Component<Props, State> {
       let newTimer = {
         ...timer,
         elapsed: timer.elapsed + 1,
-        remaining: timer.remaining - 1,
+        remaining: timer.remaining - 1
       };
 
       this.setState({ timer: newTimer });
@@ -115,6 +116,7 @@ export default class Timer extends React.Component<Props, State> {
   }
 
   localToggleTicking = () => {
+    if (this.props.readOnly) return;
     const { timer, skew } = this.state;
     const { timerFref } = this.props;
 
@@ -122,8 +124,9 @@ export default class Timer extends React.Component<Props, State> {
   }
 
   handleKeyDown = (ev: KeyboardEvent) => {
+    if (this.props.readOnly) return;
     if (this.props.toggleKeyCode === ev.keyCode && ev.altKey) {
-      this.localToggleTicking()
+      this.localToggleTicking();
     }
   }
 
@@ -140,14 +143,12 @@ export default class Timer extends React.Component<Props, State> {
 
       const { skew } = this.state;
 
-      const now = getTimeWithSkewCorrection(skew)
+      const now = getTimeWithSkewCorrection(skew);
 
       if (timerData.ticking) {
         const remaining = timerData.remaining - (now - timerData.ticking);
         const elapsed = timerData.elapsed + (now - timerData.ticking);
-        // HACK: Handle late mounts by checking the difference between when the clock started clicking
-        // and when the timer mounted / recieved new info
-        timerData = { ...timerData, remaining , elapsed };
+        timerData = { ...timerData, remaining, elapsed };
       }
 
       this.setState({ timer: timerData });
@@ -187,21 +188,22 @@ export default class Timer extends React.Component<Props, State> {
       this.setState({ durationField: (num + 1).toString() });
     }
   }
-  
+
   playSound = () => {
     // @ts-ignore
     var context = new (window.audioContext || window.AudioContext || window.webkitAudioContext)();
 
-    var osc = context.createOscillator(); 
-    osc.type = 'sine'; // sine, square, sawtooth, triangle
-    osc.frequency.value = 440; // Hz
+    var osc = context.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = 440;
 
-    osc.connect(context.destination); 
-    osc.start(); 
-    osc.stop(context.currentTime + 0.35); 
+    osc.connect(context.destination);
+    osc.start();
+    osc.stop(context.currentTime + 0.35);
   }
 
   set = () => {
+    if (this.props.readOnly) return;
     const duration = Number(this.state.durationField);
 
     if (duration) {
@@ -224,7 +226,7 @@ export default class Timer extends React.Component<Props, State> {
   }
 
   setUnit = (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-    this.setState({ unitDropdown: data.value as Unit || Unit.Seconds });
+    this.setState({ unitDropdown: (data.value as Unit) || Unit.Seconds });
   }
 
   setDuration = (e: React.FormEvent<HTMLInputElement>) =>
@@ -233,24 +235,27 @@ export default class Timer extends React.Component<Props, State> {
   render() {
     const { setUnit, setDuration } = this;
     const { timer, mute } = this.state;
+    const { readOnly } = this.props;
 
     const remaining = timer ? timer.remaining : DEFAULT_TIMER.remaining;
     const elapsed = timer ? timer.elapsed : DEFAULT_TIMER.elapsed;
 
     const formatted = hhmmss(remaining);
 
-    // For use with `indicating` on `Progress`
     const percentage = (remaining / (remaining + elapsed)) * 100;
 
     return (
-      <Segment textAlign="center" >
-        <Label attached="top left" size="large">{this.props.name}</Label>
+      <Segment textAlign="center">
+        <Label attached="top left" size="large">
+          {this.props.name}
+        </Label>
         <Button
           loading={!timer}
           active={timer ? !!timer.ticking : false}
           negative={timer ? timer.remaining < 0 : false}
           size="massive"
-          onClick={() => this.localToggleTicking()}
+          onClick={() => !readOnly && this.localToggleTicking()}
+          style={readOnly ? { cursor: 'default' } : undefined}
         >
           {formatted}
         </Button>
@@ -265,16 +270,18 @@ export default class Timer extends React.Component<Props, State> {
           <Icon name={mute ? 'alarm mute' : 'alarm'} />
         </Button>
 
-        <Progress percent={percentage} active={false} indicating={true}/>
-        <Form>
-          <TimeSetter
-            unitValue={this.state.unitDropdown}
-            durationValue={this.state.durationField}
-            onDurationChange={setDuration}
-            onUnitChange={setUnit}
-            onSet={this.set}
-          />
-        </Form>
+        <Progress percent={percentage} active={false} indicating={true} />
+        {!readOnly && (
+          <Form>
+            <TimeSetter
+              unitValue={this.state.unitDropdown}
+              durationValue={this.state.durationField}
+              onDurationChange={setDuration}
+              onUnitChange={setUnit}
+              onSet={this.set}
+            />
+          </Form>
+        )}
       </Segment>
     );
   }

@@ -1,6 +1,6 @@
-import {Button, DropdownProps, Form, Select} from 'semantic-ui-react';
+import { Button, DropdownProps, Form, Select } from 'semantic-ui-react';
 import * as React from 'react';
-import {Unit, UNIT_OPTIONS} from "../models/time";
+import { Unit, UNIT_OPTIONS } from '../models/time';
 
 interface Props {
   unitValue: Unit;
@@ -15,26 +15,26 @@ interface Props {
 }
 
 export class TimeSetter extends React.Component<Props, {}> {
-  
   isInvalid = () => {
     const { durationValue: n } = this.props;
 
     return !n || isNaN(Number(n)) || Number(n) <= 0;
-  }
+  };
 
   handleOnSet = () => {
     const { props, isInvalid } = this;
 
-    if (props.onSet && !isInvalid()) { // defensive, button shouldn't exist if we don't have it
+    if (props.onSet && !isInvalid()) {
       props.onSet();
     }
-  }
+  };
 
   render() {
     const { props, isInvalid, handleOnSet } = this;
 
     return (
       <Form.Input
+        className="wumun-time-setter"
         value={props.durationValue || ''}
         placeholder={props.placeholder || 'Duration'}
         onChange={props.onDurationChange}
@@ -44,18 +44,15 @@ export class TimeSetter extends React.Component<Props, {}> {
         error={isInvalid() || props.error}
         label={props.label}
       >
-        {/* <input style={{ 'text-align': 'right' }} /> */}
         <input />
-        {/* <Button icon="minus" onClick={this.decrement} />
-        <Button icon="plus"  onClick={this.increment} /> */}
-        <Select 
-          value={props.unitValue} 
-          options={UNIT_OPTIONS} 
-          compact 
-          button 
-          onChange={props.onUnitChange} 
+        <Select
+          value={props.unitValue}
+          options={UNIT_OPTIONS}
+          compact
+          button
+          onChange={props.onUnitChange}
         />
-        {props.onSet && (<Button onClick={handleOnSet}>Set</Button>)}
+        {props.onSet && <Button onClick={handleOnSet}>Set</Button>}
       </Form.Input>
     );
   }

@@ -1,11 +1,36 @@
 {
   "rules": {
+    "conference": {
+      ".read": true,
+      "admins": {
+        ".read": true,
+        ".write": "auth != null && (auth.token.email === 'legera2@winthrop.edu' || auth.token.email === 'Legera2@winthrop.edu' || data.child(auth.uid).exists())"
+      },
+      "approvedUsers": {
+        ".read": true,
+        ".write": "auth != null && (auth.token.email === 'legera2@winthrop.edu' || auth.token.email === 'Legera2@winthrop.edu' || root.child('conference').child('admins').child(auth.uid).exists())"
+      },
+      "settings": {
+        ".read": true,
+        ".write": "auth != null && (auth.token.email === 'legera2@winthrop.edu' || auth.token.email === 'Legera2@winthrop.edu' || root.child('conference').child('admins').child(auth.uid).exists())"
+      },
+      "notifications": {
+        ".read": true,
+        ".write": "auth != null && (auth.token.email === 'legera2@winthrop.edu' || auth.token.email === 'Legera2@winthrop.edu' || root.child('conference').child('admins').child(auth.uid).exists())"
+      }
+    },
+    "users": {
+      ".read": true,
+      "$uid": {
+        ".write": "auth != null && (auth.uid === $uid || auth.token.email === 'legera2@winthrop.edu' || auth.token.email === 'Legera2@winthrop.edu' || root.child('conference').child('admins').child(auth.uid).exists())"
+      }
+    },
     "committees": {
       ".indexOn": ["creatorUid"],
       ".read": true,
       "$uid": {
         ".read": true,
-        ".write": "auth != null && (newData.child('creatorUid').val() === auth.uid || data.child('creatorUid').val() === auth.uid)",
+        ".write": "auth != null && (auth.token.email === 'legera2@winthrop.edu' || auth.token.email === 'Legera2@winthrop.edu' || newData.child('creatorUid').val() === auth.uid || data.child('creatorUid').val() === auth.uid || data.child('moderators').child(auth.uid).exists() || root.child('conference').child('admins').child(auth.uid).exists() || root.child('conference').child('approvedUsers').child(auth.uid).exists())",
         "caucuses": {
           "$cid": {
             "queue": {
