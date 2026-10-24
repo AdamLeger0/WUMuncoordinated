@@ -174,8 +174,8 @@ export default class Onboard extends React.Component<Props, State> {
               onChange={this.handleInput}
             />
             <Form.Button
-              primary
               fluid
+              style={{ backgroundColor: 'var(--sec-teal)', color: 'var(--text-light)' }}
               disabled={!this.state.user || this.state.name === ''}
             >
               Create committee
@@ -191,9 +191,9 @@ export default class Onboard extends React.Component<Props, State> {
     return (
       <Container style={{ padding: '1em 0em' }}>
         <Helmet>
-          <title>{`Create Committee - Muncoordinated`}</title>
+          <title>{`Create Committee - WUMUN Hub`}</title>
           <meta name="description" content="Login, create an account, or create
-                                      a committee with Muncoordinated now!" />
+                                      a committee with WUMUN Hub now!" />
         </Helmet>
         <ConnectionStatus />
         <Grid
@@ -202,13 +202,13 @@ export default class Onboard extends React.Component<Props, State> {
         >
           <Grid.Row>
             <Grid.Column>
-              <Header as="h1" textAlign='center'>
-                Muncoordinated
-              </Header>
+             <Header as="h1" textAlign="center" style={{ margin: '1em 0', color: 'var(--sec-navy)' }}>
+               Winthrop University Model UN
+             </Header>
               <Message>
                 <Message.Header>Browser compatibility notice</Message.Header>
                   <p>
-                  Muncoordinated works best with newer versions of <a 
+                  WUMUN Hub works best with newer versions of <a 
                     href="https://www.google.com/chrome/">Google Chrome</a>.
                    Use of other/older browsers has caused bugs and data loss.
                   </p>
